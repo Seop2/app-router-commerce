@@ -1,0 +1,20 @@
+/* 이 링크 컴포넌트 버튼 모양이고, 방문한 URL이 구분될 수 있게 스타일링 해줘 */
+.link {
+  font-size: 20px;
+  text-decoration: none;
+  color: black;
+  margin-right: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease;
+}
+/* 각 상태에 따라 더 눈에 띄게 스타일을 변경해줘 */
+.link:hover {
+  color: red;
+  font-weight: bold;
+}
+.link:active {
+  color: blue;
+  font-weight: bold;
+}

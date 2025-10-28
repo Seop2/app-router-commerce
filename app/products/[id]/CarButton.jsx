@@ -40,6 +40,8 @@ function CartButton({ productId }) {
       const result = await response.json();
       console.log(result);
       alert("장바구니에 담겼습니다");
+      // CartPage의 fetch에서 cache: 'no-store'를 사용하므로
+      // router.push만으로도 최신 데이터를 가져옴
       router.push("/cart");
     } catch (error) {
       // console.log(error.errorMessage, error.status);

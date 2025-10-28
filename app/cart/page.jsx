@@ -6,7 +6,10 @@ import CartSummary from "./components/CartSummary";
 const apiUrl = "https://app-router-api-five.vercel.app/api/cart";
 
 async function fetchCart() {
-  const response = await fetch(apiUrl);
+  // 캐싱을 비활성화하여 항상 최신 데이터를 가져옴
+  const response = await fetch(apiUrl, {
+    cache: "no-store",
+  });
   const data = await response.json();
   return data;
 }

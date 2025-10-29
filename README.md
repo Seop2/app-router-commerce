@@ -1,39 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+https://app-router-commerce.vercel.app/
 
 ## 쇼핑몰 프로젝트
 
@@ -97,11 +62,50 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
   - 서버컴포넌트나 API Route에서는 환경변수 안전하게 사용 가능
 
 - **추가로 익혀둘 것들**
+
   - **Middleware** : 요청 시 선처리(인증/리디렉트 등), `/middleware.js`
   - **에러/예외 처리**: `error.js(x)`로 폴더별 에러 UI 별도 처리
   - **fetch 캐싱 및 revalidate**: 서버컴포넌트 내 fetch시 SSG/SSR 지정, 데이터의 신선도 제어(`revalidate` 옵션)
   - **동적 import** 등 코드 분할과 최적화 기법
   - **배포**: Vercel 등 플랫폼에 손쉽게 배포
+
+## 추가 개념
+
+- DOM : 화면의 요소
+- Virtual DOM : 화면을 그리기 위한 가상 요소. 보통 js 형태로 정보가 저장됨.
+- JSX : Virtual DOM 을 쉽게 작성할 수 있게 하는 리액트 문법
+- React + React Router : SPA형태로 페이지 형태를 모두 자바스크립트 모듈로 갖고 있음. - HTML이 하나
+- Next : 서버 사이드 렌더링 - HTML 여러개 (서버가 알아서 페이지 마다 생성함)
+- 모듈 : 목적과 역할에 따라 하나로 묶여 있는 여러줄의 자바스크립트 코드
+- Hydration(하이드레이션) : 수분 공급, 서버 사이드 렌더링된 정적 페이지와 번들링된 자바스크립트 파일을 클라이언트에 보내면 클라이언트 사이드에서 두 코드를 서로 매칭시키는 과정 -> 정적인 DOM에 js모듈로 동적으로 만든다...
+
+### SSR / SSG / CSR 렌더링 용어 정리
+
+- **SSR (Server Side Rendering, 서버 사이드 렌더링)**
+
+  - 사용자의 요청이 들어올 때마다 서버에서 HTML을 생성해서 전달하는 방식입니다.
+  - 각 요청 시마다 서버가 데이터를 불러오고, 페이지를 만들어서 클라이언트에 보냅니다.
+  - 예시: Next.js의 기본 페이지, 검색엔진 SEO에 유리
+  - 장점: 항상 최신 데이터 제공, SEO에 좋음
+  - 단점: 요청마다 서버 부하, 초기 로딩이 느려질 수 있음
+
+- **SSG (Static Site Generation, 정적 사이트 생성)**
+
+  - 빌드 시점에 미리 HTML 파일들을 만들어두고, 요청 시 바로 정적 파일을 전달하는 방식입니다.
+  - 데이터가 자주 바뀌지 않는 페이지에 적합합니다.
+  - 예시: Next.js의 `getStaticProps`, 블로그/문서 페이지 등
+  - 장점: 매우 빠른 로딩, 서버 부하 적음
+  - 단점: 데이터 변경 시 재빌드 필요(혹은 revalidate 설정 필요), 최신 데이터 반영이 늦을 수 있음
+
+- **CSR (Client Side Rendering, 클라이언트 사이드 렌더링)**
+  - 최초 요청 시 최소한의 HTML만 받고, 이후 자바스크립트가 실행되어 브라우저(클라이언트)에서 화면을 구성합니다.
+  - 데이터 fetch와 렌더링 모두 브라우저에서 처리합니다.
+  - 예시: Create React App, Next.js에서 'use client' 사용 컴포넌트
+  - 장점: 인터랙티브 UI, 페이지 일부만 빠르게 갱신
+  - 단점: 첫 로딩이 느릴 수 있음, SEO 불리함(크롤러가 JS 실행 필요)
+
+> Next.js는 이 SSR, SSG, CSR 방식을 모두 선택해 사용할 수 있습니다.
+> 처음 로딩시 SSR -> 페이지 이동시 CSR 방식으로 최적화
 
 ---
 

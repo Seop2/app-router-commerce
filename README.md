@@ -6,7 +6,7 @@ https://app-router-commerce.vercel.app/
 - 상품 상세 페이지
 - 장바구니 페이지
 
-## 중간 정리 (10/28)
+
 
 ## Next.js 중간 정리 (강의 요약 + 추가 보충)
 
@@ -68,7 +68,24 @@ https://app-router-commerce.vercel.app/
   - **fetch 캐싱 및 revalidate**: 서버컴포넌트 내 fetch시 SSG/SSR 지정, 데이터의 신선도 제어(`revalidate` 옵션)
   - **동적 import** 등 코드 분할과 최적화 기법
   - **배포**: Vercel 등 플랫폼에 손쉽게 배포
+---------
+### next js 타입스크립트 props
+```tsx
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+const DashBoardDetailPage = async ({ params }: PageProps) => {
+  const { id } = await params;
+  return (
+    <div>
+      <h1>{id}번 상세페이지</h1>
+    </div>
+  );
+};
 
+export default DashBoardDetailPage;
+
+```
 ## 추가 개념
 
 - DOM : 화면의 요소
